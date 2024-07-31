@@ -1,0 +1,19 @@
+site_name: Kenyoni MkDocs Example
+site_url: https://kenyoni-software.github.io/kny-mkdocs
+copyright: "&copy; Copyright 2024-present Kenyoni Software"
+
+extra:
+  generator: true
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/kenyoni-software
+
+plugins:
+  - kny_badge
+  - kny_godot_ref
+  - kny_common:
+      admonition_idea: true
+      mathjax: true
+      tablesort: true
+  - kny_source_ref:
+      source_url: "https://github.com/kenyoni-software/project-catta/tree/main"

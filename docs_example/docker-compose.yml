@@ -1,0 +1,17 @@
+services:
+  mkdocs-serve:
+    build:
+      context: ../
+      dockerfile: docs_example/Dockerfile
+    volumes:
+      - ./:/docs
+    ports:
+      - 8000:8000
+
+  mkdocs-build:
+    build:
+      context: ../
+      dockerfile: docs_example/Dockerfile
+    volumes:
+      - ./:/docs
+    command: build

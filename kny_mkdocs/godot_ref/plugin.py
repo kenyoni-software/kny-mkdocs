@@ -1,4 +1,5 @@
 import argparse
+import importlib.resources as ir
 import re
 import shlex
 
@@ -8,11 +9,6 @@ from mkdocs.config.defaults import MkDocsConfig
 from mkdocs.plugins import BasePlugin
 from mkdocs.structure.files import Files, File
 from mkdocs.structure.pages import Page
-
-godot_css = """.kny-godot-ref {
-    font-family: var(--md-code-font-family);
-}
-"""
 
 
 class Config(MkConfig):
@@ -28,7 +24,7 @@ class Plugin(BasePlugin[Config]):
         config.extra_css.append("assets/stylesheets/kny/godot_ref.css")
 
     def on_files(self, files: Files, /, *, config: MkDocsConfig) -> Files | None:
-        files.append(File.generated(config, "assets/stylesheets/kny/godot_ref.css", content=godot_css))
+        files.append(File.generated(config, "assets/stylesheets/kny/godot_ref.css", abs_src_path=str(ir.files(__package__).joinpath("godot_ref.css"))))
         return files
 
     def on_page_markdown(self, markdown: str, *, page: Page, config: MkDocsConfig, files: Files) -> str | None:

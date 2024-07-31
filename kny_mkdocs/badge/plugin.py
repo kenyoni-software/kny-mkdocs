@@ -1,4 +1,5 @@
 import argparse
+import importlib.resources as ir
 import re
 import shlex
 
@@ -6,47 +7,6 @@ from mkdocs.config.defaults import MkDocsConfig
 from mkdocs.plugins import BasePlugin
 from mkdocs.structure.files import Files, File
 from mkdocs.structure.pages import Page
-
-badge_css: str = """.md-typeset .mdx-badge {
-    font-size: .85em
-}
-
-.md-typeset .mdx-badge__icon {
-    color: var(--md-typeset-a-color);
-    box-shadow: inset 0 0 0.0rem 0.05rem var(--md-accent-fg-color);
-    padding: 0.2rem;
-}
-
-.md-typeset .mdx-badge__icon:first-child {
-    border-bottom-left-radius: 0.2rem;
-    border-top-left-radius: 0.2rem;
-}
-
-.md-typeset .mdx-badge__icon:last-child {
-    border-bottom-right-radius: 0.2em;
-    border-top-right-radius: 0.2rem;
-}
-
-.md-typeset .mdx-badge__text {
-    color: var(--md-typeset-a-color);
-    box-shadow: inset 0 0 0.0rem 1px var(--md-accent-fg-color);
-    padding: 0.2rem 0.3rem;
-}
-
-.md-typeset .mdx-badge__text:first-child {
-    border-bottom-left-radius: 0.2rem;
-    border-top-left-radius: 0.2rem;
-}
-
-.md-typeset .mdx-badge__text:last-child {
-    border-bottom-right-radius: 0.2rem;
-    border-top-right-radius: 0.2rem;
-}
-
-.kny-badge-bg {
-    background: var(--md-accent-fg-color--transparent);
-}
-"""
 
 
 def _badge_html(args: argparse.Namespace):
@@ -91,7 +51,7 @@ class Plugin(BasePlugin):
         config.extra_css.append("assets/stylesheets/kny/badge.css")
 
     def on_files(self, files: Files, /, *, config: MkDocsConfig) -> Files | None:
-        files.append(File.generated(config, "assets/stylesheets/kny/badge.css", content=badge_css))
+        files.append(File.generated(config, "assets/stylesheets/kny/badge.css", abs_src_path=str(ir.files(__package__).joinpath("badge.css"))))
         return files
 
     def on_page_markdown(self, markdown: str, *, page: Page, config: MkDocsConfig, files: Files) -> str | None:

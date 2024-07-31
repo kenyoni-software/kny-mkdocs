@@ -1,0 +1,5 @@
+*
+
+!kny_mkdocs/
+!pyproject.toml
+!hatch_build.py

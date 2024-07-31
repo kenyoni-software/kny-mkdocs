@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools", "setuptools-scm"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "kny_mkdocs"
-version = "1.0.0"
+version = "1.1.0"
 description = "Kenyoni MkDocs Plugins"
 authors = [
     { name = "Kenyoni Software", email = "software@kenyoni.eu" }
@@ -18,14 +18,17 @@ classifiers = [
 ]
 requires-python = ">= 3.10"
 dependencies = [
-    "mkdocs>=1.6",
+    "mkdocs>=1.6"
 ]
 
 [project.entry-points."mkdocs.plugins"]
 kny_badge = "kny_mkdocs.badge.plugin:Plugin"
 kny_common = "kny_mkdocs.common.plugin:Plugin"
-ny_godot_ref = "kny_mkdocs.godot_ref.plugin:Plugin"
+kny_godot_ref = "kny_mkdocs.godot_ref.plugin:Plugin"
 kny_source_ref = "kny_mkdocs.source_ref.plugin:Plugin"
 
-[tool.setuptools.packages.find]
+[tool.hatch.build.targets.sdist]
+ignore-vcs = true
 include = ["kny_mkdocs*"]
+
+[tool.hatch.build.hooks.custom]
