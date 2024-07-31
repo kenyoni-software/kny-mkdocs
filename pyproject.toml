@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "kny_mkdocs"
-version = "1.1.0"
+version = "1.1.1"
 description = "Kenyoni MkDocs Plugins"
 authors = [
     { name = "Kenyoni Software", email = "software@kenyoni.eu" }

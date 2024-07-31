@@ -30,6 +30,6 @@ class Plugin(BasePlugin[Config]):
     def on_page_markdown(self, markdown: str, *, page: Page, config: MkDocsConfig, files: Files) -> str | None:
         def replace(match: re.Match):
             args: argparse.Namespace = self.parser.parse_args(shlex.split(match.groups()[0]))
-            return f'<a class="kny-godot-ref" href="{self.config.godot_url}/class_{args.class_name.lower()}.html">{args.class_name}</a>'
+            return f'<a class="kny-godot-ref" href="{self.config.godot_url}/classes/class_{args.class_name.lower()}.html">{args.class_name}</a>'
 
         return re.sub(r"{{\skny:godot\s(.*?)\s}}", replace, markdown, flags=re.I | re.M)
