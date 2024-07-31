@@ -3,23 +3,29 @@
 ## Install
 
 ```commandline
-pip install git+https://github.com/kenyoni-software/kny-mkdocs@1.0.0
+pip install git+https://github.com/kenyoni-software/kny-mkdocs@1.1.0
 ```
 
 ## Configuration
+
+With their default values.
 
 ```yml
 plugins:
   - kny_badge
   - kny_common:
-      # Enable admonition idea, optional
+      # Enable admonition idea
       admonition_idea: false
+      # Enable MathJax
+      mathjax: false
+      # Enable tablesort
+      tablesort: false
   - kny_godot_ref:
-      # Godot documentation URL, optional
+      # Godot documentation URL
       godot_url: "https://docs.godotengine.org/en/stable"
   - kny_source_ref:
-      # Source code URL, required
-      source_url: "https://github.com/kenyoni-software/kny-mkdocs/tree/main"
+      source_url: ""
+      # Source code URL (e.g. https://github.com/kenyoni-software/project-catta/tree/main)
 ```
 
 ## Plugins
@@ -55,12 +61,20 @@ Admonition with an idea lamp.
     Text.
 ```
 
+#### MathJax
+
+Enable `pymdownx.arithmatex` settings with `generic: true` and adds MathJax javascripts.
+
+#### Tablesort
+
+Add the tablesort javascripts.
+
 ### kny_godot_ref
 
-Create a link of Godot class/type to the Godot documentation.
+Adds an option to link to a class of the Godot Documentation.
 
 ```
-{{ kny:godot class }}
+{{ kny:godot "class_name" }}
 ```
 
 ### kny_source_ref
