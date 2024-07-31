@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kny_mkdocs"
+version = "2024.07.29"
+description = "Kenyoni MK Docs Plugin"
+authors = [
+    { name = "Kenyoni Software", email = "software@kenyoni.eu" }
+]
+maintainers = [
+    { name = "Kenyoni Software", email = "software@kenyoni.eu" }
+]
+license = { text = "Proprietary License" }
+classifiers = [
+    "License :: Other/Proprietary License"
+]
+requires-python = ">= 3.10"
+dependencies = [
+    "mkdocs>=1.6",
+]
+
+[project.entry-points."mkdocs.plugins"]
+kny_badge = "kny_mkdocs.badge.plugin:Plugin"
+kny_common = "kny_mkdocs.common.plugin:Plugin"
+ny_godot_ref = "kny_mkdocs.godot_ref.plugin:Plugin"
+kny_source_ref = "kny_mkdocs.source_ref.plugin:Plugin"
+
+[tool.setuptools.packages.find]
+include = ["kny_mkdocs*"]
