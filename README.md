@@ -1,9 +1,9 @@
-# Kenyoni MKDocs Plugins
+# Kenyoni MkDocs Plugins
 
 ## Install
 
 ```commandline
-pip install git+https://github.com/kenyoni-software/kny-mkdocs
+pip install git+https://github.com/kenyoni-software/kny-mkdocs@1.0.0
 ```
 
 ## Configuration

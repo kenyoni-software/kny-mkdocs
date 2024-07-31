@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "kny_mkdocs"
-version = "2024.07.29"
-description = "Kenyoni MK Docs Plugin"
+version = "1.0.0"
+description = "Kenyoni MkDocs Plugins"
 authors = [
     { name = "Kenyoni Software", email = "software@kenyoni.eu" }
 ]
