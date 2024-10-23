@@ -76,12 +76,16 @@ Enable `pymdownx.arithmatex` settings with `generic: true` and adds MathJax java
 
 Add the tablesort javascripts.
 
+### kny_external_link_icon
+
+Adds a small icon to make external links more visible.
+
 ### kny_godot_ref
 
 Adds an option to link to a class of the Godot Documentation.
 
 ```
-{{ kny:godot "class_name" }}
+{{ kny:godot class_name }}
 ```
 
 ### kny_source_ref

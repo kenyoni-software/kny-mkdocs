@@ -6,6 +6,10 @@
 
 $$\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$$
 
+```
+$$\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$$
+```
+
 Inline MathJax $\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$.
 
 | Name   | Value |
@@ -14,6 +18,10 @@ Inline MathJax $\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$.
 | Second | 2     |
 | Third  | 3     |
 | Fourth | 4     |
+
+{{ kny:godot int }}
+
+{{ kny:badge animal "**Enhydra Lutris Kenyoni**" --left-bg }}
 
 [external link](http://localhost:8000/kny-mkdocs/)
 
