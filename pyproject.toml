@@ -18,12 +18,14 @@ classifiers = [
 ]
 requires-python = ">= 3.10"
 dependencies = [
-    "mkdocs>=1.6"
+    "beautifulsoup4>=4.12.0",
+    "mkdocs-material>=9.5.31",
 ]
 
 [project.entry-points."mkdocs.plugins"]
 kny_badge = "kny_mkdocs.badge.plugin:Plugin"
 kny_common = "kny_mkdocs.common.plugin:Plugin"
+kny_external_link_icon = "kny_mkdocs.external_link_icon.plugin:Plugin"
 kny_godot_ref = "kny_mkdocs.godot_ref.plugin:Plugin"
 kny_source_ref = "kny_mkdocs.source_ref.plugin:Plugin"
 

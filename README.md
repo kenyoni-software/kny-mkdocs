@@ -20,6 +20,13 @@ plugins:
       mathjax: false
       # Enable tablesort
       tablesort: false
+  - kny_external_link_icon:
+      # Icon path of material mkdocs icons.
+      icon: "material/open-in-new"
+      # Exclude all these links starting with...
+      # Empty by default.
+      exclude:
+        - "https://docs.godotengine.org"
   - kny_godot_ref:
       # Godot documentation URL
       godot_url: "https://docs.godotengine.org/en/stable"

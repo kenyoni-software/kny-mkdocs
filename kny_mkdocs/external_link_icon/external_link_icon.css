@@ -1,0 +1,12 @@
+.kny-external-link-icon {
+    --md-icon-size: 0.7em;
+    display: inline-flex;
+    height: 0.7em;
+    vertical-align: text-top;
+}
+
+.kny-external-link-icon svg {
+    fill: currentcolor;
+    max-height: 100%;
+    width: 0.7em;
+}

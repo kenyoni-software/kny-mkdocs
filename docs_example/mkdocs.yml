@@ -10,6 +10,7 @@ extra:
 
 plugins:
   - kny_badge
+  - kny_external_link_icon
   - kny_godot_ref
   - kny_common:
       admonition_idea: true
