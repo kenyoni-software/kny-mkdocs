@@ -1,5 +1,9 @@
 {
     "recommendations": [
-        "spmeesseman.vscode-taskexplorer"
+        "spmeesseman.vscode-taskexplorer",
+        "ms-python.python",
+        "ms-python.isort",
+        "ms-python.black-formatter",
+        "ms-python.pylint"
     ]
 }
