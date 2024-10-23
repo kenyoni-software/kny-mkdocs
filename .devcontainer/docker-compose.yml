@@ -1,0 +1,10 @@
+services:
+  devcontainer:
+    image: mcr.microsoft.com/vscode/devcontainers/python:3.10
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+    command: sleep infinity
+    volumes:
+      - ..:/workspaces/kny-mkdocs:cached

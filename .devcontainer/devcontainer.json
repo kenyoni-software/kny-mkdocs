@@ -1,0 +1,22 @@
+{
+	"name": "Kenyoni MkDocs Plugin",
+	"dockerComposeFile": [
+		"docker-compose.yml"
+	],
+	"service": "devcontainer",
+	"workspaceFolder": "/workspaces/kny-mkdocs",
+	"remoteUser": "vscode",
+	"containerUser": "vscode",
+	"portsAttributes": {
+		"8000": {
+			"label": "mkdocs preview",
+			"onAutoForward": "notify"
+		}
+	},
+	"forwardPorts": [
+		8000
+	],
+	"postCreateCommand": {
+		"install packages": "bash ./.devcontainer/post-create-command.sh"
+	}
+}
