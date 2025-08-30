@@ -16,10 +16,10 @@ plugins:
   - kny_common:
       # Enable admonition idea
       admonition_idea: false
-      # Enable MathJax
-      mathjax: false
-      # Enable tablesort
-      tablesort: false
+      # Enable MathJax, use "latest" or a tag
+      mathjax: ""
+      # Enable tablesort, use "latest" or a tag
+      tablesort: ""
   - kny_external_link_icon:
       # Icon path of material mkdocs icons.
       icon: "material/open-in-new"

@@ -13,8 +13,8 @@ plugins:
   - kny_external_link_icon
   - kny_godot_ref
   - kny_common:
-      admonition_idea: true
-      mathjax: true
-      tablesort: true
+      admonition_idea: True
+      mathjax: "latest"
+      tablesort: "latest"
   - kny_source_ref:
       source_url: "https://github.com/kenyoni-software/project-catta/tree/main"

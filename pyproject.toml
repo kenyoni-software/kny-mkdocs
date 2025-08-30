@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "kny_mkdocs"
-version = "1.1.1"
+version = "1.3.0"
 description = "Kenyoni MkDocs Plugins"
 authors = [
     { name = "Kenyoni Software", email = "software@kenyoni.eu" }
@@ -33,4 +33,13 @@ kny_source_ref = "kny_mkdocs.source_ref.plugin:Plugin"
 ignore-vcs = true
 include = ["kny_mkdocs*"]
 
-[tool.hatch.build.hooks.custom]
+[tool.black]
+line-length = 140
+
+[tool.isort]
+profile = "black"
+known_first_party = ["kny_mkdocs"]
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+line_length = 140
+multi_line_output = 3
+include_trailing_comma = true

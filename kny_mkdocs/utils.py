@@ -2,7 +2,7 @@ from importlib.abc import Traversable
 from pathlib import Path
 
 from mkdocs.config.defaults import MkDocsConfig
-from mkdocs.structure.files import Files, File
+from mkdocs.structure.files import File, Files, InclusionLevel
 
 
 def add_files_recursive(directory: Traversable, output: Path, files: Files, config: MkDocsConfig) -> None:
@@ -13,4 +13,11 @@ def add_files_recursive(directory: Traversable, output: Path, files: Files, conf
             if path.is_dir():
                 dirs.add(path)
             if path.is_file():
-                files.append(File.generated(config, str(output.joinpath(str(path).removeprefix(str(directory) + "/"))), abs_src_path=str(path)))
+                files.append(
+                    File.generated(
+                        config,
+                        str(output.joinpath(str(path).removeprefix(str(directory) + "/"))),
+                        abs_src_path=str(path),
+                        inclusion=InclusionLevel.NOT_IN_NAV,
+                    )
+                )
