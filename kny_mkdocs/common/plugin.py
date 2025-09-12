@@ -17,7 +17,7 @@ import kny_mkdocs.utils as utils
 
 
 class Config(MkConfig):
-    admonition_idea = Type(bool, default="")
+    admonition_idea = Type(bool, default=False)
     mathjax = Type(str, default="")
     tablesort = Type(str, default="")
 
