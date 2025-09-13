@@ -16,7 +16,16 @@
 	"forwardPorts": [
 		8000
 	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"Tyriar.sort-lines",
+				"charliermarsh.ruff",
+				"ms-python.python",
+			]
+		}
+	},
 	"postCreateCommand": {
-		"install packages": "bash ./.devcontainer/post-create-command.sh"
+		"create python env": "python -m venv .venv && pip install uv watchdog && uv sync",
 	}
 }

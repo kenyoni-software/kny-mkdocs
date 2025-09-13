@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "kny_mkdocs"
-version = "1.3.2"
+version = "1.3.3"
 description = "Kenyoni MkDocs Plugins"
 authors = [
     { name = "Kenyoni Software", email = "software@kenyoni.eu" }
@@ -22,6 +22,9 @@ dependencies = [
     "mkdocs-material>=9.6.3",
 ]
 
+[project.optional-dependencies]
+dev = ["ruff"]
+
 [project.entry-points."mkdocs.plugins"]
 kny_badge = "kny_mkdocs.badge.plugin:Plugin"
 kny_common = "kny_mkdocs.common.plugin:Plugin"
@@ -33,13 +36,13 @@ kny_source_ref = "kny_mkdocs.source_ref.plugin:Plugin"
 ignore-vcs = true
 include = ["kny_mkdocs*"]
 
-[tool.black]
+[tool.ruff]
 line-length = 140
+target-version = "py313"
 
-[tool.isort]
-profile = "black"
-known_first_party = ["kny_mkdocs"]
-sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
-line_length = 140
-multi_line_output = 3
-include_trailing_comma = true
+[tool.ruff.lint]
+extend-select = ["ANN"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["kny_mkdocs"]
+combine-as-imports = true

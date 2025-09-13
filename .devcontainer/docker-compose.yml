@@ -1,3 +1,5 @@
+name: kny_mkdocs_devcontainer
+
 services:
   devcontainer:
     image: mcr.microsoft.com/vscode/devcontainers/python:3.13

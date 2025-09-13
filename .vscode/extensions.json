@@ -1,9 +1,7 @@
 {
     "recommendations": [
-        "spmeesseman.vscode-taskexplorer",
+        "Tyriar.sort-lines",
+        "charliermarsh.ruff",
         "ms-python.python",
-        "ms-python.isort",
-        "ms-python.black-formatter",
-        "ms-python.pylint"
     ]
 }

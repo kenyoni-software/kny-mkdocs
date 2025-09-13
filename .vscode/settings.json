@@ -1,18 +1,13 @@
 {
-    "python.defaultInterpreterPath": "/usr/local/bin/python",
+    "python.defaultInterpreterPath": "/workspaces/dev/.venv/bin/python",
+    "python.terminal.activateEnvironment": true,
     "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.defaultFormatter": "charliermarsh.ruff",
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
-            "source.organizeImports": "always",
-        },
+            "source.fixAll": "explicit",
+            "source.organizeImports": "explicit"
+        }
     },
-    "black-formatter.args": [
-        "--config",
-        "${workspaceFolder}/pyproject.toml"
-    ],
-    "isort.args": [
-        "--profile",
-        "black"
-    ],
+    "ruff.configuration": "${workspaceFolder}/pyproject.toml"
 }
