@@ -1,7 +1,8 @@
 import importlib.resources as ir
+from typing import cast
 
-import material.templates
-from bs4 import BeautifulSoup, ResultSet
+import material.templates # pyright: ignore[reportMissingTypeStubs]
+from bs4 import BeautifulSoup, Tag
 from mkdocs.config.base import Config as MkConfig
 from mkdocs.config.config_options import ListOfItems, Type
 from mkdocs.config.defaults import MkDocsConfig
@@ -34,9 +35,8 @@ class Plugin(BasePlugin[Config]):
         soup: BeautifulSoup = BeautifulSoup(html, "html.parser")
         icon: str = ir.files(material.templates.__package__).joinpath(".icons").joinpath(self.config.icon + ".svg").read_text()
 
-        link: ResultSet = []
-        for link in soup.find_all("a"):
-            url: str = link.get("href", "")
+        for link in cast(list[Tag], soup.find_all("a")):
+            url: str = cast(str, link.get("href", ""))
             if not _url_excluded(url, self.config.exclude) and (url.startswith("http") or url.startswith("https")):
                 link.append(BeautifulSoup(f'<span class="kny-external-link-icon">{icon}</span>', "html.parser"))
 

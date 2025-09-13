@@ -3,7 +3,7 @@
 ## Install
 
 ```commandline
-pip install git+https://github.com/kenyoni-software/kny-mkdocs@1.2.0
+pip install git+https://github.com/kenyoni-software/kny-mkdocs@1.3.2
 ```
 
 ## Configuration

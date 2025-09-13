@@ -54,7 +54,7 @@ class Plugin(BasePlugin[Config]):
                     inclusion=InclusionLevel.NOT_IN_NAV,
                 )
             )
-            utils.add_files_recursive(Plugin._MATHJAX_DIR, Path("assets/javascripts/mathjax/"), files, config)
+            utils.add_files_recursive(Plugin._MATHJAX_DIR, Path("assets/javascripts/mathjax/"), files, config, [".md"])
         if self.config.tablesort:
             files.append(
                 File.generated(
@@ -78,7 +78,7 @@ class Plugin(BasePlugin[Config]):
         if "admonition" not in config.markdown_extensions:
             config.markdown_extensions.append("admonition")
         config.extra_css.append("assets/stylesheets/kny/admonition_idea.css")
-        if config.theme["icon"] is None:
+        if config.theme.get("icon", None) is None:
             config.theme["icon"] = {}
         config.theme["icon"].setdefault("admonition", {}).setdefault("idea", "material/lightbulb-on")
 

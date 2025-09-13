@@ -16,7 +16,7 @@ class Config(MkConfig):
 
 
 class Plugin(BasePlugin[Config]):
-    def __init__(self):
+    def __init__(self) -> None:
         self.parser = argparse.ArgumentParser()
         self.parser.add_argument("class_name", type=str, default="", help="class name")
 
@@ -32,7 +32,7 @@ class Plugin(BasePlugin[Config]):
         return files
 
     def on_page_markdown(self, markdown: str, /, *, page: Page, config: MkDocsConfig, files: Files) -> str | None:
-        def replace(match: re.Match):
+        def replace(match: re.Match[str]) -> str:
             args: argparse.Namespace = self.parser.parse_args(shlex.split(match.groups()[0]))
             return f'<a class="kny-godot-ref" href="{self.config.godot_url}/classes/class_{args.class_name.lower()}.html">{args.class_name}</a>'
 

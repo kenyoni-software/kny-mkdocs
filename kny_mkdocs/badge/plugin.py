@@ -2,34 +2,40 @@ import argparse
 import importlib.resources as ir
 import re
 import shlex
+from typing import cast
 
+from mkdocs.config.base import Config as MkConfig
 from mkdocs.config.defaults import MkDocsConfig
 from mkdocs.plugins import BasePlugin
 from mkdocs.structure.files import File, Files
 from mkdocs.structure.pages import Page
 
 
-def _badge_html(args: argparse.Namespace):
-    left_classes: str = f"mdx-badge__icon" if args.left_text[0] == ":" and args.left_text[-1] == ":" else "mdx-badge__text"
+def _badge_html(args: argparse.Namespace) -> str:
+    left_classes: str = "mdx-badge__icon" if args.left_text[0] == ":" and args.left_text[-1] == ":" else "mdx-badge__text"
     if args.left_bg:
         left_classes += " kny-badge-bg"
     right_classes: str = (
-        f"mdx-badge__icon" if len(args.right_text) > 2 and args.right_text[0] == ":" and args.right_text[-1] == ":" else "mdx-badge__text"
+        "mdx-badge__icon" if len(args.right_text) > 2 and args.right_text[0] == ":" and args.right_text[-1] == ":" else "mdx-badge__text"
     )
     if args.right_bg:
         right_classes += " kny-badge-bg"
     return "".join(
         [
-            f'<span class="mdx-badge">',
+            '<span class="mdx-badge">',
             f'<span class="{left_classes}">{args.left_text}</span>' if args.left_text else "",
             f'<span class="{right_classes}">{args.right_text}</span>' if args.right_text else "",
-            f"</span>",
+            "</span>",
         ]
     )
 
 
-class Plugin(BasePlugin):
-    def __init__(self):
+class Config(MkConfig):
+    pass
+
+
+class Plugin(BasePlugin[Config]):
+    def __init__(self) -> None:
         self.parser = argparse.ArgumentParser()
         sub_parser = self.parser.add_subparsers(dest="command", parser_class=argparse.ArgumentParser)
         parser = sub_parser.add_parser("badge", help="badge")
@@ -60,9 +66,9 @@ class Plugin(BasePlugin):
         return files
 
     def on_page_markdown(self, markdown: str, /, *, page: Page, config: MkDocsConfig, files: Files) -> str | None:
-        def replace(match: re.Match):
+        def replace(match: re.Match[str]) -> str:
             args: argparse.Namespace = self.parser.parse_args(shlex.split(match.groups()[0]))
-            match args.command:
+            match cast(str, args.command):
                 case "badge-version":
                     args.left_text = ":material-tag-outline:"
                     args.left_bg = True
@@ -77,5 +83,8 @@ class Plugin(BasePlugin):
                     return _badge_html(args)
                 case "badge":
                     return _badge_html(args)
+                case _:
+                    pass
+            return ""
 
         return re.sub(r"{{\skny:((?:badge|badge-download|badge-experimental|badge-version).*?)\s}}", replace, markdown, flags=re.I | re.M)
