@@ -84,13 +84,12 @@ def _badge_attrs_str(text: str, bg: str) -> str:
     if text:
         is_icon: bool = text.startswith(":") and text.endswith(":")
         attrs["class"].append("mdx-badge__icon" if is_icon else "mdx-badge__text")
-    
-    if bg != _DEFAULT_BACKGROUND and bg is not None:
-        attrs["style"].append("box-shadow: none;")
 
-    if bg != "":
+    if bg is not None:
+        if bg != _DEFAULT_BACKGROUND:
+            attrs["style"].append("box-shadow: none;")
+        
         contrast_color: str = _get_contrast_color(bg)
-
         attrs["style"].append(f"background: {bg};")
         attrs["style"].append(f"color: {contrast_color};")
 
@@ -124,23 +123,23 @@ class Plugin(BasePlugin[Config]):
         parser = sub_parser.add_parser("badge", help="badge")
         parser.add_argument("left_text", type=str, default="", help="left text of the badge")
         parser.add_argument("right_text", nargs="?", type=str, default="", help="right text of the badge")
-        parser.add_argument("--left-bg", nargs="?", action="store", type=str, default=None, help="left background color")
-        parser.add_argument("--right-bg", nargs="?", action="store", type=str, default=None, help="left background color")
+        parser.add_argument("--left-bg", nargs="?", action="store", type=str, default=None, const=_DEFAULT_BACKGROUND, help="left background color")
+        parser.add_argument("--right-bg", nargs="?", action="store", type=str, default=None, const=_DEFAULT_BACKGROUND, help="left background color")
 
         parser: argparse.ArgumentParser = sub_parser.add_parser("badge-version", help="experimental badge")
         parser.add_argument("right_text", type=str, default="", help="right text of the badge")
-        parser.add_argument("--left-bg", nargs="?", action="store", type=str, default=None, help="left background color")
-        parser.add_argument("--right-bg", nargs="?", action="store", type=str, default=None, help="left background color")
+        parser.add_argument("--left-bg", nargs="?", action="store", type=str, default=None, const=_DEFAULT_BACKGROUND, help="left background color")
+        parser.add_argument("--right-bg", nargs="?", action="store", type=str, default=None, const=_DEFAULT_BACKGROUND, help="left background color")
 
         parser = sub_parser.add_parser("badge-experimental", help="experimental badge")
         parser.add_argument("right_text", type=str, default="", help="right text of the badge")
-        parser.add_argument("--left-bg", nargs="?", action="store", type=str, default=None, help="left background color")
-        parser.add_argument("--right-bg", nargs="?", action="store", type=str, default=None, help="left background color")
+        parser.add_argument("--left-bg", nargs="?", action="store", type=str, default=None, const=_DEFAULT_BACKGROUND, help="left background color")
+        parser.add_argument("--right-bg", nargs="?", action="store", type=str, default=None, const=_DEFAULT_BACKGROUND, help="left background color")
 
         parser = sub_parser.add_parser("badge-download", help="download badge")
         parser.add_argument("right_text", type=str, default="", help="right text of the badge")
-        parser.add_argument("--left-bg", nargs="?", action="store", type=str, default=None, help="left background color")
-        parser.add_argument("--right-bg", nargs="?", action="store", type=str, default=None, help="left background color")
+        parser.add_argument("--left-bg", nargs="?", action="store", type=str, default=None, const=_DEFAULT_BACKGROUND, help="left background color")
+        parser.add_argument("--right-bg", nargs="?", action="store", type=str, default=None, const=_DEFAULT_BACKGROUND, help="left background color")
 
     def on_config(self, config: MkDocsConfig) -> MkDocsConfig | None:
         config.extra_css.append("assets/stylesheets/kny/badge.css")
