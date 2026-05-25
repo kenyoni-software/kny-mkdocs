@@ -1,6 +1,7 @@
 import importlib.resources as ir
 import logging
 import shutil
+import sys
 import tempfile
 import urllib.error
 import urllib.request
@@ -85,26 +86,28 @@ class Plugin(BasePlugin[Config]):
     def _add_mathjax(self, config: MkDocsConfig) -> None:
         Plugin._CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
-        url: str = "https://github.com/mathjax/MathJax/archive/refs/heads/master.zip"
-        suffix: str = "master"
-        if self.config.mathjax != "latest":
-            url = f"https://github.com/mathjax/MathJax/archive/refs/tags/{self.config.mathjax}.zip"
-            suffix = self.config.mathjax
-        logging.getLogger("mkdocs.plugins.kny_common").info("Downloading mathjax: %s", self.config.mathjax)
-        mathjax_zip: Path = Plugin._CACHE_DIR.joinpath("mathjax.zip")
-        try:
-            urllib.request.urlretrieve(url, mathjax_zip)
-            with zipfile.ZipFile(mathjax_zip, "r") as reader:
-                reader.extractall(Plugin._CACHE_DIR)
-            shutil.rmtree(Plugin._MATHJAX_DIR, True)
-            Plugin._CACHE_DIR.joinpath(f"MathJax-{suffix}").rename(Plugin._MATHJAX_DIR)
-        except urllib.error.URLError:
-            # ignore download fails if one version is already there (to not block offline building)
-            if not Plugin._MATHJAX_DIR.exists():
-                raise
-            logging.getLogger("mkdocs.plugins.kny_common").warning("Downloading mathjax failed, will use cached one")
-
-        Plugin._CACHE_DIR.joinpath("mathjax.zip").unlink(True)
+        is_serve: bool = "serve" in sys.argv or bool(getattr(config, "watch", []))
+        if not is_serve or not Plugin._MATHJAX_DIR.exists():
+            url: str = "https://github.com/mathjax/MathJax/archive/refs/heads/master.zip"
+            suffix: str = "master"
+            if self.config.mathjax != "latest":
+                url = f"https://github.com/mathjax/MathJax/archive/refs/tags/{self.config.mathjax}.zip"
+                suffix = self.config.mathjax
+            logging.getLogger("mkdocs.plugins.kny_common").info("Downloading mathjax: %s", self.config.mathjax)
+            mathjax_zip: Path = Plugin._CACHE_DIR.joinpath("mathjax.zip")
+            try:
+                urllib.request.urlretrieve(url, mathjax_zip)
+                with zipfile.ZipFile(mathjax_zip, "r") as reader:
+                    reader.extractall(Plugin._CACHE_DIR)
+                shutil.rmtree(Plugin._MATHJAX_DIR, True)
+                Plugin._CACHE_DIR.joinpath(f"MathJax-{suffix}").rename(Plugin._MATHJAX_DIR)
+            except urllib.error.URLError:
+                # ignore download fails if one version is already there (to not block offline building)
+                if not Plugin._MATHJAX_DIR.exists():
+                    raise
+                logging.getLogger("mkdocs.plugins.kny_common").warning("Downloading mathjax failed, will use cached one")
+            finally:
+                Plugin._CACHE_DIR.joinpath("mathjax.zip").unlink(True)
 
         if "pymdownx.arithmatex" not in config.markdown_extensions:
             config.markdown_extensions.append("pymdownx.arithmatex")
@@ -115,17 +118,19 @@ class Plugin(BasePlugin[Config]):
     def _add_tablesort(self, config: MkDocsConfig) -> None:
         Plugin._CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
-        url: str = "https://raw.githubusercontent.com/tristen/tablesort/master/dist/tablesort.min.js"
-        if self.config.tablesort != "latest":
-            url = f"https://raw.githubusercontent.com/tristen/tablesort/refs/tags/{self.config.tablesort}/tablesort.min.js"
-        logging.getLogger("mkdocs.plugins.kny_common").info("Downloading tablesort: %s", self.config.tablesort)
-        try:
-            urllib.request.urlretrieve(url, Plugin._TABLESORT_FILE)
-        except urllib.error.URLError:
-            # ignore download fails if one version is already there (to not block offline building)
-            if not Plugin._TABLESORT_FILE.exists():
-                raise
-            logging.getLogger("mkdocs.plugins.kny_common").warning("Downloading tablesort failed, will use cached one")
+        is_serve: bool = "serve" in sys.argv or bool(getattr(config, "watch", []))
+        if not is_serve or not Plugin._TABLESORT_FILE.exists():
+            url: str = "https://raw.githubusercontent.com/tristen/tablesort/master/dist/tablesort.min.js"
+            if self.config.tablesort != "latest":
+                url = f"https://raw.githubusercontent.com/tristen/tablesort/refs/tags/{self.config.tablesort}/tablesort.min.js"
+            logging.getLogger("mkdocs.plugins.kny_common").info("Downloading tablesort: %s", self.config.tablesort)
+            try:
+                urllib.request.urlretrieve(url, Plugin._TABLESORT_FILE)
+            except urllib.error.URLError:
+                # ignore download fails if one version is already there (to not block offline building)
+                if not Plugin._TABLESORT_FILE.exists():
+                    raise
+                logging.getLogger("mkdocs.plugins.kny_common").warning("Downloading tablesort failed, will use cached one")
 
         config.extra_javascript.append("assets/javascripts/kny/tablesort.js")
         config.extra_javascript.append("assets/javascripts/tablesort.min.js")
