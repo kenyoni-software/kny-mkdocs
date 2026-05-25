@@ -2,7 +2,7 @@ name: kny_mkdocs_devcontainer
 
 services:
   devcontainer:
-    image: mcr.microsoft.com/vscode/devcontainers/python:3.13
+    image: mcr.microsoft.com/vscode/devcontainers/python:3.14
     cap_add:
       - SYS_PTRACE
     security_opt:

@@ -1,7 +1,7 @@
 {
 	"name": "Kenyoni MkDocs Plugin",
 	"dockerComposeFile": [
-		"docker-compose.yml"
+		"compose.yaml"
 	],
 	"service": "devcontainer",
 	"workspaceFolder": "/workspaces/kny-mkdocs",
@@ -10,18 +10,15 @@
 	"portsAttributes": {
 		"8000": {
 			"label": "mkdocs preview",
-			"onAutoForward": "notify"
+			"onAutoForward": "silent"
 		}
 	},
-	"forwardPorts": [
-		8000
-	],
 	"customizations": {
 		"vscode": {
 			"extensions": [
 				"Tyriar.sort-lines",
 				"charliermarsh.ruff",
-				"ms-python.python",
+				"ms-python.python"
 			]
 		}
 	},
