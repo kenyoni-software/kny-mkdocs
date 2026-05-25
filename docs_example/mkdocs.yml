@@ -8,6 +8,12 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/kenyoni-software
 
+markdown_extensions:
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
 plugins:
   - kny_badge
   - kny_external_link_icon
@@ -17,7 +23,7 @@ plugins:
       mathjax: "latest"
       tablesort: "latest"
   - kny_source_ref:
-      source_url: "https://github.com/kenyoni-software/project-catta/tree/main"
+      source_url: "https://github.com/kenyoni-software/kny-mkdocs/tree/main"
 
 theme:
   name: material

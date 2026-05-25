@@ -23,6 +23,12 @@ Inline MathJax $\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$.
 
 {{ kny:badge animal "**Enhydra Lutris Kenyoni**" --left-bg }}
 
+{{ kny:badge :material-waves: "**Enhydra Lutris Kenyoni**" --left-bg }}
+
+{{ kny:badge animal "**Enhydra Lutris Kenyoni**" --left-bg blue --right-bg #00ff0080 }}
+
+{{ kny:badge-experimental "text" --right-bg }}
+
 [external link](http://localhost:8000/kny-mkdocs/)
 
 *all links which are starting with http/https*

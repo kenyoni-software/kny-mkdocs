@@ -45,6 +45,7 @@ Create badges, with a left and right text or use shorts for special badges with 
 {{ kny:badge "left text" }}
 {{ kny:badge "left text" "right text" }}
 {{ kny:badge "left text" --left-bg --right-bg }}
+{{ kny:badge "left text" --left-bg red --right-bg #00ff00}}
 
 {{ kny:badge-version "version" }}
 {{ kny:badge-version "version" --right-bg }}
@@ -54,6 +55,16 @@ Create badges, with a left and right text or use shorts for special badges with 
 
 {{ kny:badge-download "text" }}
 {{ kny:badge-download "text" --right-bg }}
+```
+
+Using icons requires additional configuration:
+
+```yaml
+markdown_extensions:
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 ```
 
 ### kny_common
