@@ -1,4 +1,4 @@
-FROM squidfunk/mkdocs-material:9.6.18
+FROM squidfunk/mkdocs-material:9.7.7
 
 #RUN pip install git+https://github.com/kenyoni-software/kny-mkdocs
 COPY ./ kny_mkdocs
