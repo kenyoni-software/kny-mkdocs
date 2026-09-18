@@ -1,0 +1,25 @@
+.kny-nav__item,
+.kny-nav__delimiter {
+    white-space: nowrap;
+}
+
+.kny-nav__item {
+    --kny-nav-bg-active: color-mix(in srgb, var(--md-accent-fg-color), var(--md-primary-bg-color--light));
+
+    border-radius: 0.2rem;
+    border: 0.1rem solid var(--md-default-fg-color--lighter);
+    font-family: var(--md-code-font-family);
+    font-size: 0.75em;
+    padding: 0em 0.4em;
+}
+
+.kny-nav__sep {
+    font-size: 0.75em;
+    font-weight: bold;
+    padding: 0 0.3em;
+}
+
+.kny-nav__item--active {
+    background-color: var(--kny-nav-bg-active);
+    background-clip: padding-box;
+}

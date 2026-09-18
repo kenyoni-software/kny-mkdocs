@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "kny_mkdocs"
-version = "1.3.3"
+version = "1.4.0"
 description = "Kenyoni MkDocs Plugins"
 authors = [
     { name = "Kenyoni Software", email = "software@kenyoni.eu" }
@@ -30,6 +30,7 @@ kny_badge = "kny_mkdocs.badge.plugin:Plugin"
 kny_common = "kny_mkdocs.common.plugin:Plugin"
 kny_external_link_icon = "kny_mkdocs.external_link_icon.plugin:Plugin"
 kny_godot_ref = "kny_mkdocs.godot_ref.plugin:Plugin"
+kny_nav = "kny_mkdocs.nav.plugin:Plugin"
 kny_source_ref = "kny_mkdocs.source_ref.plugin:Plugin"
 
 [tool.hatch.build.targets.sdist]

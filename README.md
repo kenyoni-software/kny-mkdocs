@@ -30,6 +30,10 @@ plugins:
   - kny_godot_ref:
       # Godot documentation URL
       godot_url: "https://docs.godotengine.org/en/stable"
+  - kny_nav:
+      theme: "classic"
+      # Delimiter used between navigation labels in the classic theme.
+      delimiter: "❯"
   - kny_source_ref:
       source_url: ""
       # Source code URL (e.g. https://github.com/kenyoni-software/project-catta/tree/main)
@@ -98,6 +102,16 @@ Adds an option to link to a class of the Godot Documentation.
 ```
 {{ kny:godot class_name }}
 ```
+
+### kny_nav
+
+Create a compact navigation path with either the `classic` or `modern` theme. Classic uses the configured delimiter, modern uses adjacent arrow-shaped items.  
+An item beginning with `*` will be highlighted. The delimiter option applies only to the classic theme.
+
+```
+[[ File / *Tools / Open New... / Fix color ]]
+```
+
 
 ### kny_source_ref
 

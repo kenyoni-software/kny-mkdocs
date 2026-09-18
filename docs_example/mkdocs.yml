@@ -18,6 +18,7 @@ plugins:
   - kny_badge
   - kny_external_link_icon
   - kny_godot_ref
+  - kny_nav
   - kny_common:
       admonition_idea: True
       mathjax: "latest"

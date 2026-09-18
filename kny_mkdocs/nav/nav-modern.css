@@ -1,0 +1,67 @@
+.kny-nav {
+    --kny-nav-base: var(--md-default-bg-color);
+    --kny-nav-bg-active: color-mix(in srgb, var(--md-accent-fg-color), var(--md-primary-bg-color--light));
+    --kny-nav-bg: var(--md-accent-bg-color);
+    --kny-nav-sep-color: var(--md-default-fg-color--light);
+    --kny-nav-sep-thickness: 0.2em;
+    --kny-nav-sep-width: 0.6em;
+
+    border-radius: 0.2rem;
+    border: 0.1rem solid var(--md-default-fg-color--lighter);
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.25);
+    display: inline-flex;
+    overflow: hidden;
+}
+
+.kny-nav__item {
+    background: linear-gradient(var(--kny-nav-bg), var(--kny-nav-bg)), var(--kny-nav-base);
+    font-family: var(--md-code-font-family);
+    font-size: 0.75em;
+    padding: 0 0.3em;
+}
+
+.kny-nav__item--active {
+    background: linear-gradient(var(--kny-nav-bg-active), var(--kny-nav-bg-active)), var(--kny-nav-base);
+}
+
+.kny-nav__sep {
+    --sep-left: var(--kny-nav-bg);
+    --sep-right: var(--kny-nav-bg);
+
+    background: linear-gradient(var(--sep-right), var(--sep-right)), var(--kny-nav-base);
+    flex: none;
+    position: relative;
+    width: var(--kny-nav-sep-width);
+}
+
+.kny-nav__sep::before,
+.kny-nav__sep::after {
+    content: "";
+    inset: 0;
+    position: absolute;
+}
+
+.kny-nav__sep::before {
+    background: linear-gradient(var(--kny-nav-sep-color), var(--kny-nav-sep-color)), var(--kny-nav-base);
+    clip-path: polygon(0 0,
+            var(--kny-nav-sep-thickness) 0,
+            100% 50%,
+            var(--kny-nav-sep-thickness) 100%,
+            0 100%);
+}
+
+/* left triangle = tip of the previous item */
+.kny-nav__sep::after {
+    background: linear-gradient(var(--sep-left), var(--sep-left)), var(--kny-nav-base);
+    clip-path: polygon(0 0,
+            calc(100% - var(--kny-nav-sep-thickness)) 50%,
+            0 100%);
+}
+
+.kny-nav__item--active + .kny-nav__sep {
+    --sep-left: var(--kny-nav-bg-active);
+}
+
+.kny-nav__sep:has(+ .kny-nav__item--active) {
+    --sep-right: var(--kny-nav-bg-active);
+}
