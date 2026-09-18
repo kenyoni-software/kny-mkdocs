@@ -23,6 +23,6 @@
 		}
 	},
 	"postCreateCommand": {
-		"create python env": "python -m venv .venv && pip install uv watchdog && uv sync",
+		"create python env": "python -m venv .venv && pip install uv watchdog && uv sync"
 	}
 }
