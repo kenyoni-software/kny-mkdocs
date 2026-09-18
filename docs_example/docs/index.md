@@ -21,7 +21,7 @@ Inline MathJax $\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$.
 
 {{ kny:godot int }}
 
-Go to the menu [[ File / Tools / Open New... / Fix color ]], especially you want to pay attention the the highlighted item.
+Go to the menu [[ \*File / *Tools \/ More / Open New... / Fix color ]], especially you want to pay attention the the highlighted item.
 
 {{ kny:badge animal "**Enhydra Lutris Kenyoni**" }}
 
