@@ -20,8 +20,9 @@ plugins:
   - kny_godot_ref
   - kny_nav
   - kny_common:
-      admonition_idea: True
+      admonition_idea: true
       mathjax: "latest"
+      mermaid: true
       tablesort: "latest"
   - kny_source_ref:
       source_url: "https://github.com/kenyoni-software/kny-mkdocs/tree/main"

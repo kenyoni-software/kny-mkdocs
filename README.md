@@ -3,7 +3,7 @@
 ## Install
 
 ```commandline
-pip install git+https://github.com/kenyoni-software/kny-mkdocs@1.5.1
+pip install git+https://github.com/kenyoni-software/kny-mkdocs@1.6.0
 ```
 
 ## Configuration
@@ -18,6 +18,8 @@ plugins:
       admonition_idea: false
       # Enable MathJax, use "latest" or a tag
       mathjax: ""
+      # Enable Mermaid patch
+      mermaid: true
       # Enable tablesort, use "latest" or a tag
       tablesort: ""
   - kny_external_link_icon:
@@ -86,6 +88,10 @@ Admonition with an idea lamp.
 #### MathJax
 
 Enable `pymdownx.arithmatex` settings with `generic: true` and adds MathJax javascripts.
+
+#### Mermaid
+
+Enable Mermaid patch to fix the tree view colors in dark mode.
 
 #### Tablesort
 

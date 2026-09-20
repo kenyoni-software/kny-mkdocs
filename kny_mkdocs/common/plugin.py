@@ -14,12 +14,13 @@ from mkdocs.config.defaults import MkDocsConfig
 from mkdocs.plugins import BasePlugin
 from mkdocs.structure.files import File, Files, InclusionLevel
 
-import kny_mkdocs.utils as utils
+from kny_mkdocs import utils
 
 
 class Config(MkConfig):
     admonition_idea = Type(bool, default=False)
     mathjax = Type(str, default="")
+    mermaid = Type(bool, default=True)
     tablesort = Type(str, default="")
 
 
@@ -56,6 +57,15 @@ class Plugin(BasePlugin[Config]):
                 )
             )
             utils.add_files_recursive(Plugin._MATHJAX_DIR, Path("assets/javascripts/mathjax/"), files, config, [".md"])
+        if self.config.mermaid:
+            files.append(
+                File.generated(
+                    config,
+                    "assets/stylesheets/kny/mermaid_patch.css",
+                    abs_src_path=str(ir.files(__package__).joinpath("mermaid_patch.css")),
+                    inclusion=InclusionLevel.NOT_IN_NAV,
+                )
+            )
         if self.config.tablesort:
             files.append(
                 File.generated(
