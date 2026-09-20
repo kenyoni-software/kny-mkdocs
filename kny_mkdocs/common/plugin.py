@@ -35,7 +35,7 @@ class Plugin(BasePlugin[Config]):
         if self.config.mathjax != "":
             self._add_mathjax(config)
         if self.config.mermaid:
-            config.extra_css.append("assets/stylesheets/kny/mermaid_patch.css")
+            config.extra_javascript.append("assets/javascripts/kny/mermaid_patch.js")
         if self.config.tablesort:
             self._add_tablesort(config)
 
@@ -63,8 +63,8 @@ class Plugin(BasePlugin[Config]):
             files.append(
                 File.generated(
                     config,
-                    "assets/stylesheets/kny/mermaid_patch.css",
-                    abs_src_path=str(ir.files(__package__).joinpath("mermaid_patch.css")),
+                    "assets/javascripts/kny/mermaid_patch.js",
+                    abs_src_path=str(ir.files(__package__).joinpath("mermaid_patch.js")),
                     inclusion=InclusionLevel.NOT_IN_NAV,
                 )
             )
