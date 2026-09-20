@@ -34,6 +34,8 @@ class Plugin(BasePlugin[Config]):
             self._add_admonition(config)
         if self.config.mathjax != "":
             self._add_mathjax(config)
+        if self.config.mermaid:
+            config.extra_css.append("assets/stylesheets/kny/mermaid_patch.css")
         if self.config.tablesort:
             self._add_tablesort(config)
 
